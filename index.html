@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#D1B2FF" />
+  <meta name="description" content="Авитолог Александра Арбатова — бесплатная консультация и аудит аккаунта Авито." />
+  <title>Авитолог Александра Арбатова</title>
+  <style>
+    :root {
+      --violet: #D1B2FF;
+      --violet-2: #EEE2FF;
+      --acid: #D0FA94;
+      --text: #111111;
+      --muted: rgba(17, 17, 17, 0.64);
+      --white-card: rgba(255, 255, 255, 0.78);
+      --white-soft: rgba(255, 255, 255, 0.54);
+      --accent: #8D5CFF;
+      --accent-dark: #6D38F5;
+      --line: rgba(17, 17, 17, 0.12);
+      --shadow: 0 24px 70px rgba(70, 28, 133, 0.18);
+      --shadow-soft: 0 14px 38px rgba(55, 20, 93, 0.13);
+      --radius-lg: 34px;
+      --radius-md: 24px;
+      --radius-sm: 18px;
+      --container: 430px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 4%, rgba(208, 250, 148, 0.9), transparent 24rem),
+        radial-gradient(circle at 92% 10%, rgba(141, 92, 255, 0.32), transparent 20rem),
+        radial-gradient(circle at 20% 78%, rgba(255, 255, 255, 0.7), transparent 19rem),
+        linear-gradient(145deg, #E8D8FF 0%, #D1B2FF 45%, #F4EBFF 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 86%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: 14px 14px 28px;
+    }
+
+    @media (min-width: 720px) {
+      body {
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        margin: 28px auto;
+        border-radius: 42px;
+        box-shadow: 0 40px 120px rgba(42, 12, 82, 0.25);
+      }
+    }
+
+    .screen {
+      position: relative;
+      min-height: calc(100vh - 28px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.54);
+      border-radius: 38px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .decor {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob-one {
+      width: 210px;
+      height: 210px;
+      top: 28px;
+      right: -86px;
+      border-radius: 45% 55% 66% 34% / 40% 40% 60% 60%;
+      background: rgba(208, 250, 148, 0.74);
+      filter: blur(1px);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .blob-two {
+      width: 170px;
+      height: 170px;
+      left: -70px;
+      top: 360px;
+      border-radius: 50%;
+      background: rgba(141, 92, 255, 0.18);
+      border: 1px dashed rgba(141, 92, 255, 0.42);
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .spark-a,
+    .spark-b,
+    .spark-c {
+      color: var(--accent);
+      font-size: 24px;
+      font-weight: 900;
+      animation: twinkle 3.2s ease-in-out infinite;
+    }
+
+    .spark-a { top: 112px; left: 24px; }
+    .spark-b { top: 302px; right: 26px; animation-delay: .8s; }
+    .spark-c { bottom: 42px; left: 52px; animation-delay: 1.5s; }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      min-height: calc(100vh - 28px);
+      flex-direction: column;
+      padding: 24px 18px 18px;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 12px;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 12px 28px rgba(89, 40, 145, 0.12);
+      backdrop-filter: blur(12px);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--acid);
+      box-shadow: 0 0 0 6px rgba(208, 250, 148, 0.28);
+    }
+
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 850;
+      box-shadow: 0 14px 30px rgba(17, 17, 17, 0.18);
+      white-space: nowrap;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 0 0 rgba(208, 250, 148, 0.8);
+      animation: pulse 1.8s infinite;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 9px 12px;
+      border: 1px solid rgba(141, 92, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.52);
+      color: rgba(17, 17, 17, 0.72);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(42px, 12.5vw, 58px);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      max-width: 360px;
+    }
+
+    .hero h1 .highlight {
+      position: relative;
+      display: inline-block;
+      padding: 0 8px 4px;
+      border-radius: 18px;
+      background: var(--acid);
+      box-shadow: 0 12px 30px rgba(123, 173, 52, 0.23);
+      transform: rotate(-1.5deg);
+    }
+
+    .subtitle {
+      margin: 18px 0 0;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+    }
+
+    .lead {
+      max-width: 340px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.43;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .cta-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      min-height: 56px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      overflow: hidden;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 950;
+      letter-spacing: -0.02em;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: -70% auto -70% -22%;
+      width: 42%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.58), transparent);
+      transform: rotate(18deg) translateX(-160%);
+      animation: shine 4.8s ease-in-out infinite;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: #111;
+      color: #fff;
+      box-shadow: 0 18px 38px rgba(17, 17, 17, 0.22), 0 0 0 7px rgba(255, 255, 255, 0.28);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(17, 17, 17, 0.12);
+      background: var(--acid);
+      color: #111;
+      box-shadow: 0 18px 38px rgba(123, 173, 52, 0.22), 0 0 0 7px rgba(208, 250, 148, 0.26);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-icon {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-secondary .btn-icon {
+      background: rgba(17, 17, 17, 0.08);
+    }
+
+    .dashboard {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 0.86fr;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 26px;
+    }
+
+    .metric-card,
+    .bubble-card,
+    .orbit-card {
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      background: var(--white-card);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+    }
+
+    .metric-card {
+      min-height: 156px;
+      padding: 16px;
+      border-radius: 28px;
+    }
+
+    .metric-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      color: rgba(17, 17, 17, 0.58);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-number {
+      font-size: 52px;
+      font-weight: 1000;
+      line-height: 0.85;
+      letter-spacing: -0.08em;
+    }
+
+    .metric-text {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .mini-chart {
+      display: flex;
+      height: 36px;
+      align-items: end;
+      gap: 5px;
+      margin-top: 18px;
+    }
+
+    .mini-chart span {
+      width: 100%;
+      border-radius: 999px 999px 5px 5px;
+      background: linear-gradient(180deg, var(--accent), #B995FF);
+      opacity: .86;
+      animation: grow 2.8s ease-in-out infinite;
+    }
+
+    .mini-chart span:nth-child(1) { height: 42%; animation-delay: .1s; }
+    .mini-chart span:nth-child(2) { height: 58%; animation-delay: .4s; }
+    .mini-chart span:nth-child(3) { height: 36%; animation-delay: .7s; }
+    .mini-chart span:nth-child(4) { height: 78%; animation-delay: 1s; }
+    .mini-chart span:nth-child(5) { height: 96%; animation-delay: 1.3s; background: var(--acid); }
+
+    .right-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bubble-card {
+      min-height: 82px;
+      padding: 13px;
+      border-radius: 24px;
+    }
+
+    .bubble-card strong {
+      display: block;
+      font-size: 24px;
+      line-height: .92;
+      letter-spacing: -0.055em;
+    }
+
+    .bubble-card span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(17, 17, 17, 0.58);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.18;
+    }
+
+    .orbit-card {
+      position: relative;
+      min-height: 104px;
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 66% 40%, rgba(208, 250, 148, 0.86), transparent 43%),
+        rgba(255, 255, 255, 0.75);
+    }
+
+    .orbit-card::before,
+    .orbit-card::after {
+      content: "";
+      position: absolute;
+      border: 2px dashed rgba(141, 92, 255, 0.5);
+      border-radius: 50%;
+      animation: rotate 10s linear infinite;
+    }
+
+    .orbit-card::before {
+      width: 118px;
+      height: 118px;
+      top: 16px;
+      left: 10px;
+    }
+
+    .orbit-card::after {
+      width: 72px;
+      height: 72px;
+      right: 12px;
+      bottom: -20px;
+      animation-duration: 8s;
+      animation-direction: reverse;
+    }
+
+    .section {
+      position: relative;
+      padding: 28px 0 0;
+    }
+
+    .section-inner {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      padding: 22px 16px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 33px;
+      line-height: .95;
+      letter-spacing: -0.065em;
+    }
+
+    .section-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.36;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 11px;
+      margin-top: 18px;
+    }
+
+    .audit-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: var(--radius-md);
+      background: var(--white-card);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+    }
+
+    .audit-card {
+      min-height: 145px;
+      padding: 14px;
+    }
+
+    .audit-card::after {
+      content: "";
+      position: absolute;
+      right: -28px;
+      bottom: -34px;
+      width: 92px;
+      height: 92px;
+      border: 1px dashed rgba(141, 92, 255, 0.4);
+      border-radius: 50%;
+    }
+
+    .icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--acid);
+      box-shadow: 0 12px 24px rgba(123, 173, 52, 0.17);
+      font-size: 19px;
+    }
+
+    .audit-card h3,
+    .reason-card h3,
+    .price-card h3 {
+      margin: 14px 0 0;
+      font-size: 17px;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+
+    .audit-card p,
+    .reason-card p,
+    .price-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.31;
+      letter-spacing: -0.015em;
+    }
+
+    .services {
+      gap: 13px;
+    }
+
+    .price-card {
+      padding: 16px;
+      border-radius: 28px;
+    }
+
+    .price-card.featured {
+      background:
+        radial-gradient(circle at 88% 6%, rgba(208, 250, 148, 0.9), transparent 34%),
+        rgba(255, 255, 255, 0.82);
+      box-shadow: 0 24px 54px rgba(77, 30, 145, 0.2);
+    }
+
+    .price-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .price-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 84px;
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+      white-space: nowrap;
+      box-shadow: 0 12px 24px rgba(17, 17, 17, 0.18);
+    }
+
+    .price-card h3 {
+      max-width: 210px;
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border: 1px solid rgba(141, 92, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(141, 92, 255, 0.09);
+      color: rgba(17, 17, 17, 0.72);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .reason-grid {
+      gap: 10px;
+    }
+
+    .reason-card {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      align-items: center;
+      gap: 12px;
+      min-height: 86px;
+      padding: 13px;
+    }
+
+    .reason-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .reason-card p {
+      margin-top: 5px;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      bottom: 16px;
+      left: 23px;
+      border-left: 2px dashed rgba(141, 92, 255, 0.45);
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      align-items: center;
+      gap: 11px;
+      min-height: 70px;
+      padding: 10px 12px 10px 0;
+    }
+
+    .step-number {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 18px;
+      background: var(--acid);
+      box-shadow: 0 14px 26px rgba(102, 72, 31, 0.15);
+      font-size: 18px;
+      font-weight: 1000;
+      z-index: 1;
+    }
+
+    .step-content {
+      padding: 14px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 10px 24px rgba(70, 28, 133, 0.1);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .final-cta {
+      margin-bottom: 0;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+
+    .cta-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      padding: 24px 16px 16px;
+      background:
+        radial-gradient(circle at 82% 12%, rgba(208, 250, 148, 0.94), transparent 34%),
+        linear-gradient(145deg, rgba(17, 17, 17, 0.96), rgba(46, 25, 74, 0.94));
+      color: #fff;
+      box-shadow: 0 30px 72px rgba(17, 17, 17, 0.27);
+    }
+
+    .cta-panel::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+
+    .cta-panel h2 {
+      position: relative;
+      margin: 0;
+      max-width: 340px;
+      font-size: 35px;
+      line-height: .94;
+      letter-spacing: -0.065em;
+    }
+
+    .cta-panel p {
+      position: relative;
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 15px;
+      line-height: 1.38;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-panel .cta-row {
+      position: relative;
+      margin-top: 18px;
+    }
+
+    .cta-panel .btn-primary {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 18px 38px rgba(255, 255, 255, 0.12);
+    }
+
+    .cta-panel .btn-secondary {
+      background: var(--acid);
+      color: #111;
+      box-shadow: 0 18px 38px rgba(208, 250, 148, 0.14);
+    }
+
+    .marquee {
+      display: flex;
+      width: calc(100% + 32px);
+      margin: 18px -16px -4px;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .marquee-track {
+      display: flex;
+      min-width: max-content;
+      animation: marquee 16s linear infinite;
+    }
+
+    .marquee span {
+      padding: 10px 12px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(17, 17, 17, 0.42);
+      backdrop-filter: blur(16px);
+    }
+
+    .modal.is-open {
+      display: grid;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(100%, 374px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 82% 0%, rgba(208, 250, 148, 0.9), transparent 35%),
+        rgba(255, 255, 255, 0.88);
+      box-shadow: 0 34px 100px rgba(17, 17, 17, 0.34);
+      padding: 18px;
+      transform: translateY(12px) scale(.96);
+      animation: modalIn .24s ease forwards;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .modal-card h2 {
+      margin: 0;
+      max-width: 260px;
+      font-size: 26px;
+      line-height: .98;
+      letter-spacing: -0.055em;
+    }
+
+    .modal-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.32;
+    }
+
+    .close {
+      display: grid;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .qr-wrap {
+      display: grid;
+      place-items: center;
+      border-radius: 28px;
+      padding: 16px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08), 0 18px 36px rgba(70, 28, 133, 0.14);
+    }
+
+    .qr-wrap img {
+      display: block;
+      width: min(100%, 260px);
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      image-rendering: auto;
+      border-radius: 16px;
+    }
+
+    .qr-fallback {
+      display: none;
+      width: min(100%, 260px);
+      aspect-ratio: 1 / 1;
+      place-items: center;
+      border: 2px dashed rgba(141, 92, 255, 0.45);
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(141, 92, 255, 0.08) 12px, transparent 12px) 0 0 / 26px 26px,
+        linear-gradient(rgba(141, 92, 255, 0.08) 12px, transparent 12px) 0 0 / 26px 26px,
+        #fff;
+      color: rgba(17, 17, 17, 0.72);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.3;
+      padding: 22px;
+    }
+
+    .qr-note {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(141, 92, 255, 0.1);
+      color: rgba(17, 17, 17, 0.66);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.28;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(8px, -13px, 0) rotate(6deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1) rotate(0); opacity: .62; }
+      50% { transform: scale(1.2) rotate(12deg); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(208, 250, 148, 0.72); }
+      70% { box-shadow: 0 0 0 9px rgba(208, 250, 148, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(208, 250, 148, 0); }
+    }
+
+    @keyframes shine {
+      0%, 46% { transform: rotate(18deg) translateX(-170%); }
+      64%, 100% { transform: rotate(18deg) translateX(420%); }
+    }
+
+    @keyframes grow {
+      0%, 100% { transform: scaleY(.86); }
+      50% { transform: scaleY(1.08); }
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes modalIn {
+      to { transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 360px) {
+      .page { padding-inline: 10px; }
+      .hero { padding-inline: 14px; }
+      .section-inner { padding-inline: 14px; }
+      .audit-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 40px; }
+      .section-title { font-size: 30px; }
+      .cta-panel h2 { font-size: 31px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Лендинг авитолога Александры Арбатовой">
+    <section class="screen" id="top">
+      <div class="decor blob-one"></div>
+      <div class="decor blob-two"></div>
+      <div class="decor spark-a">✦</div>
+      <div class="decor spark-b">✧</div>
+      <div class="decor spark-c">✦</div>
+
+      <div class="hero">
+        <div class="topline reveal is-visible">
+          <div class="brand" aria-label="Александра Арбатова, авитолог">
+            <span class="brand-mark">A</span>
+            <span>Александра Арбатова</span>
+          </div>
+          <div class="mini-badge"><span class="pulse-dot"></span> аудит 0 ₽</div>
+        </div>
+
+        <div class="reveal is-visible">
+          <div class="eyebrow">Авитолог • продвижение • заявки</div>
+          <h1>Авито может приносить <span class="highlight">больше заявок</span></h1>
+          <p class="subtitle">Бесплатная консультация и аудит аккаунта</p>
+          <p class="lead">Разберу ваш профиль, объявления и продвижение. Покажу, где теряются заявки и что можно улучшить уже сейчас.</p>
+        </div>
+
+        <div class="cta-row reveal is-visible" aria-label="Кнопки связи">
+          <a class="btn btn-primary" href="https://t.me/a_arbatova21" target="_blank" rel="noopener">
+            <span class="btn-icon">↗</span>
+            Связаться в Telegram
+          </a>
+          <button class="btn btn-secondary" type="button" data-open-max>
+            <span class="btn-icon">▣</span>
+            Связаться в MAX
+          </button>
+        </div>
+
+        <div class="dashboard reveal is-visible" aria-label="Декоративная аналитика заявок">
+          <article class="metric-card">
+            <div class="metric-label">
+              <span>точки роста</span>
+              <span>↗</span>
+            </div>
+            <div class="metric-number">4+</div>
+            <div class="metric-text">находим уже на первичном разборе профиля</div>
+            <div class="mini-chart" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </article>
+
+          <div class="right-stack">
+            <article class="bubble-card">
+              <strong>тексты</strong>
+              <span>объявления становятся понятнее</span>
+            </article>
+            <article class="orbit-card" aria-label="Декоративный блок"></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="audit">
+      <div class="section-inner">
+        <h2 class="section-title">Что получите на бесплатном аудите</h2>
+        <p class="section-note">Короткий, конкретный разбор без сложных терминов и лишней воды.</p>
+
+        <div class="grid audit-grid">
+          <article class="glass-card audit-card">
+            <div class="icon">☑</div>
+            <h3>Разбор объявлений</h3>
+            <p>Посмотрим структуру, оффер, заголовки и первые экраны.</p>
+          </article>
+          <article class="glass-card audit-card">
+            <div class="icon">✎</div>
+            <h3>Проверка креативов и текстов</h3>
+            <p>Найдем, что мешает клику, доверию и обращению.</p>
+          </article>
+          <article class="glass-card audit-card">
+            <div class="icon">◌</div>
+            <h3>Анализ продвижения</h3>
+            <p>Разберем платные инструменты и логику размещения.</p>
+          </article>
+          <article class="glass-card audit-card">
+            <div class="icon">↗</div>
+            <h3>Рекомендации по росту заявок</h3>
+            <p>Соберем понятный список первых действий для улучшения.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="services">
+      <div class="section-inner">
+        <h2 class="section-title">Услуги</h2>
+        <p class="section-note">Можно начать с консультации или сразу перейти к запуску и сопровождению.</p>
+
+        <div class="grid services">
+          <article class="glass-card price-card">
+            <div class="price-top">
+              <h3>Консультация + аудит + стратегия</h3>
+              <span class="price-pill">от 5 000 ₽</span>
+            </div>
+            <p>Подробно разберем аккаунт, объявления, конкурентов и составим понятный план продвижения.</p>
+            <div class="tags">
+              <span class="tag">аудит</span>
+              <span class="tag">стратегия</span>
+              <span class="tag">план действий</span>
+            </div>
+          </article>
+
+          <article class="glass-card price-card featured">
+            <div class="price-top">
+              <h3>Оформление и запуск</h3>
+              <span class="price-pill">от 10 000 ₽</span>
+            </div>
+            <p>Подготовлю профиль, объявления, тексты, визуал и базовую структуру для старта продвижения.</p>
+            <div class="tags">
+              <span class="tag">профиль</span>
+              <span class="tag">тексты</span>
+              <span class="tag">визуал</span>
+            </div>
+          </article>
+
+          <article class="glass-card price-card">
+            <div class="price-top">
+              <h3>Сопровождение 30 дней</h3>
+              <span class="price-pill">от 20 000 ₽</span>
+            </div>
+            <p>Ведение, аналитика, корректировки, тесты, продвижение и контроль результата в течение месяца.</p>
+            <div class="tags">
+              <span class="tag">ведение</span>
+              <span class="tag">аналитика</span>
+              <span class="tag">тесты</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="why">
+      <div class="section-inner">
+        <h2 class="section-title">Почему ко мне обращаются</h2>
+        <p class="section-note">Делаю акцент не на красивых словах, а на понятной системе продвижения.</p>
+
+        <div class="grid reason-grid">
+          <article class="glass-card reason-card">
+            <div class="icon">01</div>
+            <div>
+              <h3>Говорю по делу, без воды</h3>
+              <p>Сразу показываю, что влияет на заявки.</p>
+            </div>
+          </article>
+          <article class="glass-card reason-card">
+            <div class="icon">02</div>
+            <div>
+              <h3>Работаю с текстами, креативами и продвижением</h3>
+              <p>Смотрю аккаунт комплексно, а не по одному элементу.</p>
+            </div>
+          </article>
+          <article class="glass-card reason-card">
+            <div class="icon">03</div>
+            <div>
+              <h3>Помогаю находить точки роста</h3>
+              <p>Ищу слабые места в профиле, объявлениях и воронке.</p>
+            </div>
+          </article>
+          <article class="glass-card reason-card">
+            <div class="icon">04</div>
+            <div>
+              <h3>Объясняю простым языком</h3>
+              <p>Вы понимаете, что делаем, зачем и какой следующий шаг.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="process">
+      <div class="section-inner">
+        <h2 class="section-title">Как проходит работа</h2>
+        <p class="section-note">Простой путь от заявки до первых улучшений в аккаунте.</p>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">Вы оставляете заявку</div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">Я изучаю аккаунт</div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">Показываю слабые места</div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">Предлагаю план действий</div>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-content">Запускаем улучшения</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta reveal" id="contacts">
+      <div class="cta-panel">
+        <h2>Хотите понять, почему Авито не дает нужного количества заявок?</h2>
+        <p>Напишите мне — проведу бесплатную консультацию и первичный аудит аккаунта.</p>
+
+        <div class="cta-row" aria-label="Финальные кнопки связи">
+          <a class="btn btn-primary" href="https://t.me/a_arbatova21" target="_blank" rel="noopener">
+            <span class="btn-icon">↗</span>
+            Связаться в Telegram
+          </a>
+          <button class="btn btn-secondary" type="button" data-open-max>
+            <span class="btn-icon">▣</span>
+            Связаться в MAX по QR
+          </button>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>аудит</span><span>креативы</span><span>тексты</span><span>продвижение</span><span>заявки</span><span>аналитика</span>
+            <span>аудит</span><span>креативы</span><span>тексты</span><span>продвижение</span><span>заявки</span><span>аналитика</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="maxModal" role="dialog" aria-modal="true" aria-labelledby="maxModalTitle" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div class="modal-top">
+        <div>
+          <h2 id="maxModalTitle">MAX по QR-коду</h2>
+          <p>Отсканируйте QR-код, чтобы связаться со мной в MAX</p>
+        </div>
+        <button class="close" type="button" data-close-max aria-label="Закрыть окно">×</button>
+      </div>
+
+      <div class="qr-wrap">
+        <img src="max-qr.png" alt="QR-код для связи в MAX" id="maxQr" />
+        <div class="qr-fallback" id="qrFallback">Добавьте QR-код рядом с файлом index.html и назовите его max-qr.png</div>
+      </div>
+      <div class="qr-note">QR-код выводится в квадратном блоке через <b>object-fit: contain</b>, поэтому изображение не будет растянуто или искажено.</div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('maxModal');
+    const openButtons = document.querySelectorAll('[data-open-max]');
+    const closeButtons = document.querySelectorAll('[data-close-max]');
+    const qrImage = document.getElementById('maxQr');
+    const qrFallback = document.getElementById('qrFallback');
+    let previousFocus = null;
+
+    function openModal() {
+      previousFocus = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const closeButton = modal.querySelector('[data-close-max]');
+      if (closeButton) closeButton.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (previousFocus) previousFocus.focus();
+    }
+
+    openButtons.forEach((button) => button.addEventListener('click', openModal));
+    closeButtons.forEach((button) => button.addEventListener('click', closeModal));
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    qrImage.addEventListener('error', () => {
+      qrImage.style.display = 'none';
+      qrFallback.style.display = 'grid';
+    });
+
+    const revealItems = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }
+  </script>
+</body>
+</html>

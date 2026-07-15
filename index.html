@@ -695,9 +695,9 @@
     .pain-visual {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(136px, 164px);
-      gap: 16px 18px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1.05fr) minmax(156px, 190px);
+      gap: 18px 22px;
+      align-items: start;
       min-height: 0;
       margin-top: 18px;
       padding: 18px;
@@ -710,12 +710,50 @@
       overflow: hidden;
     }
 
-    .pain-phone-shell {
+    .pain-copy {
+      position: relative;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: start;
+      max-width: 360px;
+      margin: 0;
+      padding-top: 6px;
+    }
+
+    .pain-copy-title {
+      margin: 0;
+      color: #1b1725;
+      font-size: clamp(17px, 2.8vw, 23px);
+      font-weight: 1000;
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .pain-copy-subtitle {
+      margin: 12px 0 0;
+      color: rgba(50, 41, 68, 0.82);
+      font-size: clamp(12px, 1.9vw, 16px);
+      font-weight: 700;
+      line-height: 1.36;
+      letter-spacing: -0.02em;
+      max-width: 320px;
+    }
+
+    .pain-phone-column {
       position: relative;
       grid-column: 2;
       grid-row: 1;
       justify-self: end;
       z-index: 2;
+      display: grid;
+      gap: 12px;
+      justify-items: center;
+      width: 100%;
+      max-width: 188px;
+    }
+
+    .pain-phone-shell {
+      position: relative;
       width: 146px;
       margin: 0;
       padding: 8px;
@@ -934,38 +972,33 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      grid-column: 1;
-      grid-row: 1;
-      justify-self: start;
-      align-self: start;
       gap: 8px;
       width: fit-content;
-      margin-top: 12px;
-      padding: 12px 18px;
+      margin: 0;
+      padding: 12px 16px;
       border: 1px solid rgba(208, 250, 148, 0.66);
       border-radius: 999px;
       background: linear-gradient(135deg, rgba(208, 250, 148, 0.95), rgba(181, 232, 108, 0.92));
       color: #1b1725;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 950;
       letter-spacing: -0.02em;
       box-shadow: 0 16px 26px rgba(123, 173, 52, 0.16);
-      opacity: 0;
-      transform: translateY(12px);
-      pointer-events: none;
-      transition: opacity .34s ease, transform .34s ease;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      transition: filter .24s ease, transform .24s ease, box-shadow .24s ease;
     }
 
-    .pain-cta-button.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
+    .pain-cta-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 28px rgba(123, 173, 52, 0.18);
     }
 
     .pain-cta-button svg {
       display: block;
-      width: 48px;
-      height: 48px;
+      width: 38px;
+      height: 38px;
       fill: currentColor;
       transform-origin: center;
       animation: painMagnifierPulse 3.8s ease-in-out infinite;
@@ -990,15 +1023,24 @@
         padding: 16px;
       }
 
-      .pain-cta-button {
+      .pain-copy {
         grid-column: 1;
         grid-row: 1;
-        justify-self: start;
+        max-width: none;
+      }
+
+      .pain-phone-column {
+        grid-column: 1;
+        grid-row: 2;
+        max-width: none;
+        justify-items: start;
       }
 
       .pain-phone-shell {
-        grid-column: 1;
-        grid-row: 2;
+        justify-self: end;
+      }
+
+      .pain-cta-button {
         justify-self: end;
       }
     }
@@ -2685,89 +2727,6 @@
         <h2 class="section-title">Авито есть, а заявок мало?</h2>
 
         <div class="pain-card">
-          <div class="pain-visual" data-pain-visual>
-            <button class="pain-cta-button" type="button" data-pain-cta aria-label="Найдем точки роста">
-              <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-                <path d="M10.2 4.2a6 6 0 1 0 3.71 10.74l4.12 4.12a1 1 0 0 0 1.42-1.42l-4.12-4.12A6 6 0 0 0 10.2 4.2Zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/>
-              </svg>
-              <span>Найдем точки роста</span>
-            </button>
-
-            <div class="pain-phone-shell" aria-label="Телефон с динамикой Авито">
-              <div class="pain-phone-screen">
-                <div class="pain-phone-topline">
-                  <div class="pain-phone-brand" aria-hidden="true">
-                    <span class="pain-brand-mark">
-                      <svg viewBox="0 0 20 20" role="img" aria-hidden="true">
-                        <circle cx="6" cy="6" r="4.1" fill="#8d5cff"></circle>
-                        <circle cx="14" cy="6" r="4.1" fill="#ff6a64"></circle>
-                        <circle cx="6" cy="14" r="4.1" fill="#4eb2f0"></circle>
-                        <circle cx="14" cy="14" r="4.1" fill="#f8b84d"></circle>
-                      </svg>
-                    </span>
-                    <span>Avito</span>
-                  </div>
-                </div>
-
-                <div class="pain-metrics">
-                  <div class="pain-metric pain-metric-views" data-pain-metric="views">
-                    <div class="pain-metric-head">
-                      <span class="pain-metric-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-                          <path d="M12 5c5.5 0 9.8 3.7 11.4 6.8a1 1 0 0 1 0 1.1C21.8 16 17.5 19.7 12 19.7S2.2 16 0.6 12.9a1 1 0 0 1 0-1.1C2.2 8.7 6.5 5 12 5Zm0 2C8 7 4.8 9.3 3.2 12 4.8 14.7 8 17 12 17s7.2-2.3 8.8-5C19.2 9.3 16 7 12 7Zm0 1.8A3.2 3.2 0 1 1 8.8 12 3.2 3.2 0 0 1 12 8.8Z"/>
-                        </svg>
-                      </span>
-                      <div class="pain-metric-copy">
-                        <div class="pain-metric-label">Просмотры</div>
-                        <div class="pain-metric-value" data-pain-views>1 284</div>
-                      </div>
-                    </div>
-                    <svg class="pain-metric-chart" viewBox="0 0 120 24" aria-hidden="true">
-                      <path data-pain-path="views" class="pain-chart-path pain-chart-up" d="M4 18 C 18 18, 20 16, 28 15 S 54 14, 68 9 S 92 4, 116 2"></path>
-                    </svg>
-                  </div>
-
-                  <div class="pain-metric pain-metric-contacts" data-pain-metric="contacts">
-                    <div class="pain-metric-head">
-                      <span class="pain-metric-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-                          <path d="M20 17.8c-1.8 1.1-4 1.8-6.4 1.8-1.5 0-3-.2-4.3-.7L3.8 21l.8-4.1A8 8 0 0 1 1 10.5C1 5.8 5.5 2 11 2s10 3.8 10 8.5c0 2.1-.8 4-2 5.3Zm-13.7-.4.4.2c1.2.5 2.7.8 4.1.8 5 0 8.2-3.3 8.2-7.9S15.8 3.2 11 3.2 2.8 6.5 2.8 10.5c0 1.9.9 3.6 2.5 4.9l.5.4-.4 2.1 1.6-1.1Z"/>
-                        </svg>
-                      </span>
-                      <div class="pain-metric-copy">
-                        <div class="pain-metric-label">Контакты</div>
-                        <div class="pain-metric-value" data-pain-contacts>2</div>
-                      </div>
-                    </div>
-                    <svg class="pain-metric-chart" viewBox="0 0 120 24" aria-hidden="true">
-                      <path data-pain-path="contacts" class="pain-chart-path pain-chart-flat" d="M6 14 C 20 14, 36 14, 54 14 S 90 14, 114 14"></path>
-                    </svg>
-                  </div>
-
-                  <div class="pain-metric pain-metric-budget" data-pain-metric="budget">
-                    <div class="pain-metric-head">
-                      <span class="pain-metric-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-                          <path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h5.6a2 2 0 0 1 1.4.6l3.9 3.9a2 2 0 0 1 .6 1.4V18a2 2 0 0 1-2 2H7.5A2.5 2.5 0 0 1 5 17.5v-11Zm2 0v11A.5.5 0 0 0 7.5 18h9.5V10h-4a2 2 0 0 1-2-2v-1.5H7.5A.5.5 0 0 0 7 6.5Zm7.5 2.5h2.1L14.5 6.9V9Z"/>
-                        </svg>
-                      </span>
-                      <div class="pain-metric-copy">
-                        <div class="pain-metric-label">Бюджет</div>
-                        <div class="pain-metric-value" data-pain-budget>34 000 ₽</div>
-                      </div>
-                    </div>
-                    <div class="pain-budget-track" aria-hidden="true">
-                      <span class="pain-budget-fill" data-pain-budget-fill></span>
-                    </div>
-                    <svg class="pain-metric-chart" viewBox="0 0 120 24" aria-hidden="true">
-                      <path data-pain-path="budget" class="pain-chart-path pain-chart-down" d="M6 5 C 20 6, 38 10, 56 14 S 92 21, 114 22"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <ul class="pain-list" aria-label="Ситуации, когда Авито не дает заявки">
             <li class="pain-item">
               <h3 class="pain-item-title">Смотрят, но не пишут</h3>
@@ -2794,6 +2753,95 @@
               <p class="pain-item-copy">Помогу заранее продумать стратегию, структуру, тексты и визуал, чтобы запуск Авито не был хаотичным.</p>
             </li>
           </ul>
+
+          <div class="pain-visual" data-pain-visual>
+            <div class="pain-copy">
+              <h3 class="pain-copy-title">Если просмотры растут,<br>а заявки нет</h3>
+              <p class="pain-copy-subtitle">Значит, проблема не в спросе —<br>а в упаковке объявления</p>
+            </div>
+
+            <div class="pain-phone-column">
+              <div class="pain-phone-shell" aria-label="Телефон с динамикой Авито">
+                <div class="pain-phone-screen">
+                  <div class="pain-phone-topline">
+                    <div class="pain-phone-brand" aria-hidden="true">
+                      <span class="pain-brand-mark">
+                        <svg viewBox="0 0 20 20" role="img" aria-hidden="true">
+                          <circle cx="6" cy="6" r="4.1" fill="#8d5cff"></circle>
+                          <circle cx="14" cy="6" r="4.1" fill="#ff6a64"></circle>
+                          <circle cx="6" cy="14" r="4.1" fill="#4eb2f0"></circle>
+                          <circle cx="14" cy="14" r="4.1" fill="#f8b84d"></circle>
+                        </svg>
+                      </span>
+                      <span>Avito</span>
+                    </div>
+                  </div>
+
+                  <div class="pain-metrics">
+                    <div class="pain-metric pain-metric-views" data-pain-metric="views">
+                      <div class="pain-metric-head">
+                        <span class="pain-metric-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                            <path d="M12 5c5.5 0 9.8 3.7 11.4 6.8a1 1 0 0 1 0 1.1C21.8 16 17.5 19.7 12 19.7S2.2 16 0.6 12.9a1 1 0 0 1 0-1.1C2.2 8.7 6.5 5 12 5Zm0 2C8 7 4.8 9.3 3.2 12 4.8 14.7 8 17 12 17s7.2-2.3 8.8-5C19.2 9.3 16 7 12 7Zm0 1.8A3.2 3.2 0 1 1 8.8 12 3.2 3.2 0 0 1 12 8.8Z"/>
+                          </svg>
+                        </span>
+                        <div class="pain-metric-copy">
+                          <div class="pain-metric-label">Просмотры</div>
+                          <div class="pain-metric-value" data-pain-views>1 284</div>
+                        </div>
+                      </div>
+                      <svg class="pain-metric-chart" viewBox="0 0 120 24" aria-hidden="true">
+                        <path data-pain-path="views" class="pain-chart-path pain-chart-up" d="M4 18 C 18 18, 20 16, 28 15 S 54 14, 68 9 S 92 4, 116 2"></path>
+                      </svg>
+                    </div>
+
+                    <div class="pain-metric pain-metric-contacts" data-pain-metric="contacts">
+                      <div class="pain-metric-head">
+                        <span class="pain-metric-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                            <path d="M20 17.8c-1.8 1.1-4 1.8-6.4 1.8-1.5 0-3-.2-4.3-.7L3.8 21l.8-4.1A8 8 0 0 1 1 10.5C1 5.8 5.5 2 11 2s10 3.8 10 8.5c0 2.1-.8 4-2 5.3Zm-13.7-.4.4.2c1.2.5 2.7.8 4.1.8 5 0 8.2-3.3 8.2-7.9S15.8 3.2 11 3.2 2.8 6.5 2.8 10.5c0 1.9.9 3.6 2.5 4.9l.5.4-.4 2.1 1.6-1.1Z"/>
+                          </svg>
+                        </span>
+                        <div class="pain-metric-copy">
+                          <div class="pain-metric-label">Контакты</div>
+                          <div class="pain-metric-value" data-pain-contacts>2</div>
+                        </div>
+                      </div>
+                      <svg class="pain-metric-chart" viewBox="0 0 120 24" aria-hidden="true">
+                        <path data-pain-path="contacts" class="pain-chart-path pain-chart-flat" d="M6 14 C 20 14, 36 14, 54 14 S 90 14, 114 14"></path>
+                      </svg>
+                    </div>
+
+                    <div class="pain-metric pain-metric-budget" data-pain-metric="budget">
+                      <div class="pain-metric-head">
+                        <span class="pain-metric-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                            <path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h5.6a2 2 0 0 1 1.4.6l3.9 3.9a2 2 0 0 1 .6 1.4V18a2 2 0 0 1-2 2H7.5A2.5 2.5 0 0 1 5 17.5v-11Zm2 0v11A.5.5 0 0 0 7.5 18h9.5V10h-4a2 2 0 0 1-2-2v-1.5H7.5A.5.5 0 0 0 7 6.5Zm7.5 2.5h2.1L14.5 6.9V9Z"/>
+                          </svg>
+                        </span>
+                        <div class="pain-metric-copy">
+                          <div class="pain-metric-label">Бюджет</div>
+                          <div class="pain-metric-value" data-pain-budget>34 000 ₽</div>
+                        </div>
+                      </div>
+                      <div class="pain-budget-track" aria-hidden="true">
+                        <span class="pain-budget-fill" data-pain-budget-fill></span>
+                      </div>
+                      <svg class="pain-metric-chart" viewBox="0 0 120 24" aria-hidden="true">
+                        <path data-pain-path="budget" class="pain-chart-path pain-chart-down" d="M6 5 C 20 6, 38 10, 56 14 S 92 21, 114 22"></path>
+                      </svg>
+                    </div>
+                  </div>
+              </div>
+
+              <button class="pain-cta-button" type="button" data-pain-cta aria-label="Найдем точки роста">
+                <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                  <path d="M10.2 4.2a6 6 0 1 0 3.71 10.74l4.12 4.12a1 1 0 0 0 1.42-1.42l-4.12-4.12A6 6 0 0 0 10.2 4.2Zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/>
+                </svg>
+                <span>Найдем точки роста</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -3276,7 +3324,6 @@
     const painBudget = document.querySelector('[data-pain-budget]');
     const painBudgetFill = document.querySelector('[data-pain-budget-fill]');
     const painBudgetMetric = document.querySelector('[data-pain-metric="budget"]');
-    const painButton = document.querySelector('[data-pain-cta]');
     const painPaths = {
       views: document.querySelector('[data-pain-path="views"]'),
       contacts: document.querySelector('[data-pain-path="contacts"]'),
@@ -3473,10 +3520,6 @@
           painBudgetMetric.classList.add('is-active');
         }
       }, 420);
-
-      window.setTimeout(() => {
-        if (painButton) painButton.classList.add('is-visible');
-      }, 260);
     }
 
     function updateProcessTimeline() {

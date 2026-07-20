@@ -714,6 +714,8 @@
       position: relative;
       grid-column: 1;
       grid-row: 1;
+      display: grid;
+      gap: 14px;
       align-self: start;
       max-width: 360px;
       margin: 0;
@@ -730,7 +732,7 @@
     }
 
     .pain-copy-subtitle {
-      margin: 12px 0 0;
+      margin: 0;
       color: rgba(50, 41, 68, 0.82);
       font-size: clamp(12px, 1.9vw, 16px);
       font-weight: 700;
@@ -988,6 +990,7 @@
       transform: none;
       pointer-events: auto;
       transition: filter .24s ease, transform .24s ease, box-shadow .24s ease;
+      justify-self: start;
     }
 
     .pain-cta-button:hover {
@@ -1041,7 +1044,7 @@
       }
 
       .pain-cta-button {
-        justify-self: end;
+        justify-self: start;
       }
     }
 
@@ -2758,6 +2761,12 @@
             <div class="pain-copy">
               <h3 class="pain-copy-title">Если просмотры растут,<br>а заявки нет</h3>
               <p class="pain-copy-subtitle">Значит, проблема не в спросе —<br>а в упаковке объявления</p>
+              <button class="pain-cta-button" type="button" data-pain-cta aria-label="Найдем точки роста">
+                <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                  <path d="M10.2 4.2a6 6 0 1 0 3.71 10.74l4.12 4.12a1 1 0 0 0 1.42-1.42l-4.12-4.12A6 6 0 0 0 10.2 4.2Zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/>
+                </svg>
+                <span>Найдем точки роста</span>
+              </button>
             </div>
 
             <div class="pain-phone-column">
@@ -2832,14 +2841,8 @@
                       </svg>
                     </div>
                   </div>
+                </div>
               </div>
-
-              <button class="pain-cta-button" type="button" data-pain-cta aria-label="Найдем точки роста">
-                <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-                  <path d="M10.2 4.2a6 6 0 1 0 3.71 10.74l4.12 4.12a1 1 0 0 0 1.42-1.42l-4.12-4.12A6 6 0 0 0 10.2 4.2Zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/>
-                </svg>
-                <span>Найдем точки роста</span>
-              </button>
             </div>
           </div>
         </div>
